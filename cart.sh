@@ -1,6 +1,7 @@
 dnf module disable nodejs -y
 dnf module enable nodejs:20 -y
 dnf install nodejs -y
+
 cp cart.service /etc/systemd/system/cart.service
 
 useradd roboshop
@@ -10,6 +11,7 @@ cd /app
 unzip /tmp/user.zip
 cd /app
 npm install
+
 
 systemctl daemon-reload
 systemctl enable cart
