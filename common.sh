@@ -7,6 +7,7 @@ NODEJS{
   cp ${component}.service /etc/systemd/system/${component}.service
 
   useradd roboshop
+  rm -rf /app
   mkdir /app
   curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip
   cd /app
