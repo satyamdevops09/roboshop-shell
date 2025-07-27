@@ -41,19 +41,12 @@ PYTHON(){
 
 MAVEN(){
   dnf install maven -y
-  cp shipping.service /etc/systemd/system/shipping.service
+  cp ${component}.service /etc/systemd/system/${component}.service
 
-  useradd roboshop
-  mkdir /app
-  curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
-  cd /app
-  unzip /tmp/shipping.zip
-  cd /app
+  APP_PREREQ
   mvn clean package
-  mv target/shipping-1.0.jar shipping.jar
-  dnf install mysql -y
+  mv target/${component}-1.0.jar ${component}.jar
 
-  systemctl daemon-reload
-  systemctl enable shipping
-  systemctl start shipping
+
+  SYSTEMD
 }
